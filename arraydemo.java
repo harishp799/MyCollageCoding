@@ -13,12 +13,6 @@ public class arraydemo {
         }
         System.out.println();
         System.out.println("array created :");
-        /*
-         * for(int i=0;i<n;i++)
-         * {
-         * System.out.print(num[i] +" ");
-         * }
-         */
         for (int k : num) {
             System.out.print(k + " ");
         }
