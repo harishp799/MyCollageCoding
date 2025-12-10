@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Complete HTML demonstration page">
+    <title>HTML Full Reference Page</title>
+
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; padding: 20px; }
+        section { margin-bottom: 40px; }
+        h2 { background: #222; color: #fff; padding: 10px; }
+        table { border-collapse: collapse; width: 100%; margin-top: 10px; }
+        table, th, td { border: 1px solid #555; padding: 8px; }
+        pre { background: #eee; padding: 10px; border-radius: 5px; }
+        .box { width: 100px; height: 100px; background: coral; }
+    </style>
+</head>
+<body>
+
+<h1>Complete HTML Topics Showcase</h1>
+
+<!-- BASIC TEXT -->
+<section>
+    <h2>1. Basic Text Elements</h2>
+    <p>This is a paragraph.</p>
+    <strong>Bold Text</strong><br>
+    <em>Italic Text</em><br>
+    <u>Underlined Text</u><br>
+    <mark>Highlighted Text</mark><br>
+    <small>Small Text</small>
+</section>
+
+<!-- HEADINGS -->
+<section>
+    <h2>2. Headings</h2>
+    <h1>Heading 1</h1>
+    <h2>Heading 2</h2>
+    <h3>Heading 3</h3>
+    <h4>Heading 4</h4>
+</section>
+
+<!-- LISTS -->
+<section>
+    <h2>3. Lists</h2>
+    <h4>Unordered List</h4>
+    <ul>
+        <li>Apple</li>
+        <li>Banana</li>
+    </ul>
+
+    <h4>Ordered List</h4>
+    <ol>
+        <li>First</li>
+        <li>Second</li>
+    </ol>
+
+    <h4>Description List</h4>
+    <dl>
+        <dt>HTML</dt>
+        <dd>Hypertext Markup Language</dd>
+    </dl>
+</section>
+
+<!-- LINKS + IMAGES -->
+<section>
+    <h2>4. Links and Images</h2>
+    <a href="https://example.com" target="_blank">Visit Example</a>
+    <br><br>
+    <img src="https://picsum.photos/200" alt="Random Image">
+</section>
+
+<!-- TABLES -->
+<section>
+    <h2>5. Tables</h2>
+    <table>
+        <tr><th>Name</th><th>Age</th></tr>
+        <tr><td>Alice</td><td>22</td></tr>
+        <tr><td>Bob</td><td>30</td></tr>
+    </table>
+</section>
+
+<!-- FORMS -->
+<section>
+    <h2>6. Forms</h2>
+    <form>
+        <label>Name:
+            <input type="text" name="name">
+        </label><br><br>
+
+        <label>Email:
+            <input type="email" name="email">
+        </label><br><br>
+
+        <label>Password:
+            <input type="password" name="password">
+        </label><br><br>
+
+        <label>Choose a number:
+            <input type="number" name="age">
+        </label><br><br>
+
+        <label>Pick a color:
+            <input type="color">
+        </label><br><br>
+
+        <label>Date:
+            <input type="date">
+        </label><br><br>
+
+        <h4>Radio Buttons</h4>
+        <label><input type="radio" name="gender"> Male</label>
+        <label><input type="radio" name="gender"> Female</label>
+
+        <h4>Checkboxes</h4>
+        <label><input type="checkbox"> HTML</label>
+        <label><input type="checkbox"> CSS</label>
+
+        <h4>Select Dropdown</h4>
+        <select>
+            <option>Option 1</option>
+            <option>Option 2</option>
+        </select><br><br>
+
+        <textarea placeholder="Type your message..."></textarea><br>
+
+        <button type="submit">Submit</button>
+    </form>
+</section>
+
+<!-- MULTIMEDIA -->
+<section>
+    <h2>7. Multimedia</h2>
+
+    <h4>Audio</h4>
+    <audio controls>
+        <source src="sample.mp3" type="audio/mp3">
+    </audio>
+
+    <h4>Video</h4>
+    <video width="320" controls>
+        <source src="sample.mp4" type="video/mp4">
+    </video>
+</section>
+
+<!-- CANVAS -->
+<section>
+    <h2>8. Canvas</h2>
+    <canvas id="myCanvas" width="200" height="200" style="border:1px solid #333;"></canvas>
+
+    <script>
+        const c = document.getElementById("myCanvas");
+        const ctx = c.getContext("2d");
+        ctx.fillStyle = "blue";
+        ctx.fillRect(20, 20, 150, 100);
+    </script>
+</section>
+
+<!-- SVG -->
+<section>
+    <h2>9. SVG</h2>
+    <svg width="120" height="120">
+        <circle cx="60" cy="60" r="50" fill="red" />
+    </svg>
+</section>
+
+<!-- IFRAME -->
+<section>
+    <h2>10. Iframe</h2>
+    <iframe src="https://example.com" width="300" height="150"></iframe>
+</section>
+
+<!-- SEMANTIC HTML -->
+<section>
+    <h2>11. Semantic HTML</h2>
+    <article>This is an article.</article>
+    <aside>This is an aside.</aside>
+    <nav>Navigation Bar</nav>
+    <footer>Footer Section</footer>
+</section>
+
+<!-- SCRIPT -->
+<section>
+    <h2>12. JavaScript Inside HTML</h2>
+    <button onclick="alert('Hello from JS!')">Click Me</button>
+</section>
+
+<!-- ACCESSIBILITY -->
+<section>
+    <h2>13. Accessibility</h2>
+    <img src="https://picsum.photos/100" alt="Example photo for accessibility">
+    <button aria-label="Close Window">X</button>
+</section>
+
+</body>
+</html>
