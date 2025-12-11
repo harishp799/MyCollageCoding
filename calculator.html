@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Advanced Calculator</title>
+
+<style>
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #1b1b1b;
+    font-family: Arial, sans-serif;
+}
+
+.calculator {
+    background: #222;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px #000;
+    width: 300px;
+}
+
+.display {
+    background: #000;
+    color: #0f0;
+    font-size: 2rem;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: right;
+    margin-bottom: 15px;
+    overflow-x: auto;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+button {
+    padding: 15px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background: #333;
+    color: white;
+    transition: background 0.2s;
+}
+
+button:hover {
+    background: #555;
+}
+
+button.operator {
+    background: #ff9500;
+    color: white;
+}
+
+button.operator:hover {
+    background: #ffa733;
+}
+
+button.equal {
+    background: #0f0;
+    color: black;
+    grid-column: span 2;
+}
+
+button.equal:hover {
+    background: #3f3;
+}
+</style>
+</head>
+<body>
+
+<div class="calculator">
+    <div id="display" class="display">0</div>
+    <div class="buttons">
+        <button onclick="clearDisplay()">C</button>
+        <button onclick="deleteChar()">⌫</button>
+        <button onclick="appendOperator('%')" class="operator">%</button>
+        <button onclick="appendOperator('/')" class="operator">÷</button>
+
+        <button onclick="appendNumber('7')">7</button>
+        <button onclick="appendNumber('8')">8</button>
+        <button onclick="appendNumber('9')">9</button>
+        <button onclick="appendOperator('*')" class="operator">×</button>
+
+        <button onclick="appendNumber('4')">4</button>
+        <button onclick="appendNumber('5')">5</button>
+        <button onclick="appendNumber('6')">6</button>
+        <button onclick="appendOperator('-')" class="operator">−</button>
+
+        <button onclick="appendNumber('1')">1</button>
+        <button onclick="appendNumber('2')">2</button>
+        <button onclick="appendNumber('3')">3</button>
+        <button onclick="appendOperator('+')" class="operator">+</button>
+
+        <button onclick="appendNumber('0')" style="grid-column: span 2;">0</button>
+        <button onclick="appendDot()">.</button>
+        <button onclick="appendOperator('**')" class="operator">^</button>
+
+        <button onclick="calculate()" class="equal">=</button>
+    </div>
+</div>
+
+<script>
+let display = document.getElementById("display");
+let currentInput = "";
+let lastChar = "";
+
+function appendNumber(num) {
+    currentInput += num;
+    updateDisplay();
+    lastChar = num;
+}
+
+function appendOperator(op) {
+    if (currentInput === "") return;
+    if ("+-*/%^**".includes(lastChar)) {
+        // Replace last operator
+        currentInput = currentInput.slice(0, -lastChar.length);
+    }
+    currentInput += op;
+    updateDisplay();
+    lastChar = op;
+}
+
+function appendDot() {
+    if (lastChar === ".") return;
+    // Avoid multiple dots in a number
+    let parts = currentInput.split(/[\+\-\*\/\%\^]/);
+    let lastNumber = parts[parts.length - 1];
+    if (lastNumber.includes(".")) return;
+    currentInput += ".";
+    updateDisplay();
+    lastChar = ".";
+}
+
+function clearDisplay() {
+    currentInput = "";
+    updateDisplay();
+    lastChar = "";
+}
+
+function deleteChar() {
+    currentInput = currentInput.slice(0, -1);
+    updateDisplay();
+    lastChar = currentInput.slice(-1);
+}
+
+function calculate() {
+    try {
+        let result = eval(currentInput.replace(/÷/g, "/").replace(/×/g, "*"));
+        display.innerText = result;
+        currentInput = result.toString();
+        lastChar = "";
+    } catch (e) {
+        display.innerText = "Error";
+        currentInput = "";
+        lastChar = "";
+    }
+}
+
+function updateDisplay() {
+    display.innerText = currentInput || "0";
+}
+</script>
+
+</body>
+</html>
