@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JS Concepts Pack 2</title>
+
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    background: #111;
+    color: white;
+    font-family: Arial;
+}
+
+h1 {
+    text-align: center;
+    padding: 20px 0;
+}
+
+/* Grid layout */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.box {
+    background: #1c1c1c;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+/* Accordion */
+.accordion {
+    width: 90%;
+    margin: auto;
+}
+.ac-item {
+    background: #222;
+    margin: 10px 0;
+    border-radius: 8px;
+}
+.ac-title {
+    padding: 15px;
+    cursor: pointer;
+    background: #333;
+}
+.ac-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: 0.4s ease;
+    padding: 0 15px;
+}
+
+/* Tabs */
+.tabs {
+    width: 90%;
+    margin: 30px auto;
+}
+.tab-buttons button {
+    padding: 10px 20px;
+    margin-right: 5px;
+    cursor: pointer;
+}
+.tab-content {
+    background: #222;
+    padding: 20px;
+    margin-top: 10px;
+    border-radius: 8px;
+    display: none;
+}
+
+/* Slider */
+.slider {
+    width: 90%;
+    margin: 30px auto;
+    overflow: hidden;
+    border-radius: 10px;
+}
+.slider img {
+    width: 100%;
+    display: none;
+}
+
+/* Progress bar */
+.progress-container {
+    width: 90%;
+    margin: auto;
+    background: #333;
+    border-radius: 5px;
+}
+.progress-bar {
+    height: 20px;
+    width: 0%;
+    background: lime;
+    transition: 1s linear;
+    border-radius: 5px;
+}
+
+/* Stop watch */
+.stopwatch-time {
+    font-size: 2rem;
+    margin: 10px 0;
+}
+
+/* Notification icon */
+.bell {
+    font-size: 40px;
+    cursor: pointer;
+    animation: none;
+}
+@keyframes ring {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(15deg); }
+    50% { transform: rotate(-15deg); }
+    75% { transform: rotate(15deg); }
+    100% { transform: rotate(0deg); }
+}
+
+/* Auto typing */
+.typewriter {
+    width: fit-content;
+    margin: 20px auto;
+    font-size: 1.3rem;
+    border-right: 3px solid cyan;
+    overflow: hidden;
+    white-space: nowrap;
+    animation: cursorBlink .7s infinite;
+}
+@keyframes cursorBlink {
+    50% { border-color: transparent; }
+}
+</style>
+
+</head>
+<body>
+
+<h1>JavaScript Concepts Pack #2</h1>
+
+<!-- Auto typing -->
+<div class="typewriter" id="typewriter"></div>
+
+<div class="grid">
+
+    <!-- LocalStorage -->
+    <div class="box">
+        <h2>Save Name</h2>
+        <input id="username" type="text" placeholder="Enter name">
+        <button onclick="saveName()">Save</button>
+        <button onclick="loadName()">Load</button>
+        <p id="savedName"></p>
+    </div>
+
+    <!-- Mouse Position -->
+    <div class="box">
+        <h2>Mouse Position</h2>
+        <p id="mousePos">Move mouse...</p>
+    </div>
+
+    <!-- Keypress -->
+    <div class="box">
+        <h2>Key Detector</h2>
+        <p>Press any key!</p>
+        <h2 id="keyOutput"></h2>
+    </div>
+
+    <!-- Notification Bell -->
+    <div class="box">
+        <h2>Notification</h2>
+        <div class="bell" id="bell">🔔</div>
+        <button onclick="ringBell()">Ring</button>
+    </div>
+
+    <!-- Stop Watch -->
+    <div class="box">
+        <h2>Stopwatch</h2>
+        <div class="stopwatch-time" id="sw">0.00</div>
+        <button onclick="startSW()">Start</button>
+        <button onclick="stopSW()">Stop</button>
+        <button onclick="resetSW()">Reset</button>
+    </div>
+
+</div>
+
+<!-- Accordion -->
+<div class="accordion">
+    <div class="ac-item">
+        <div class="ac-title" onclick="toggleAcc(this)">What is JavaScript?</div>
+        <div class="ac-content"><p>JavaScript is a programming language for the web.</p></div>
+    </div>
+    <div class="ac-item">
+        <div class="ac-title" onclick="toggleAcc(this)">Why use JS?</div>
+        <div class="ac-content"><p>It makes websites interactive.</p></div>
+    </div>
+</div>
+
+<!-- Tabs -->
+<div class="tabs">
+    <div class="tab-buttons">
+        <button onclick="openTab('t1')">Tab 1</button>
+        <button onclick="openTab('t2')">Tab 2</button>
+        <button onclick="openTab('t3')">Tab 3</button>
+    </div>
+
+    <div id="t1" class="tab-content">This is content for Tab 1.</div>
+    <div id="t2" class="tab-content">This is content for Tab 2.</div>
+    <div id="t3" class="tab-content">This is content for Tab 3.</div>
+</div>
+
+<!-- Image Slider -->
+<div class="slider">
+    <img src="https://picsum.photos/900/300?1" class="slide">
+    <img src="https://picsum.photos/900/300?2" class="slide">
+    <img src="https://picsum.photos/900/300?3" class="slide">
+</div>
+
+<!-- Progress Bar -->
+<h2 style="text-align:center;">Progress Bar</h2>
+<div class="progress-container">
+    <div class="progress-bar" id="pb"></div>
+</div>
+<p style="text-align:center;">
+    <button onclick="startProgress()">Start Progress</button>
+</p>
+
+<!-- Fetch API Data -->
+<h2 style="text-align:center;">Random User (API)</h2>
+<p style="text-align:center;">
+    <button onclick="loadAPI()">Load User</button>
+</p>
+<p id="apiData" style="text-align:center;"></p>
+
+<script>
+/* ========== Auto Typing Text ========== */
+const text = "New JavaScript Concepts Loaded!";
+let index = 0;
+function typeWriter() {
+    if (index < text.length) {
+        document.getElementById("typewriter").innerText += text.charAt(index);
+        index++;
+        setTimeout(typeWriter, 80);
+    }
+}
+typeWriter();
+
+/* ========== LocalStorage ========== */
+function saveName() {
+    localStorage.setItem("username", document.getElementById("username").value);
+}
+function loadName() {
+    document.getElementById("savedName").innerText =
+        "Saved: " + localStorage.getItem("username");
+}
+
+/* ========== Mouse Position ========== */
+document.addEventListener("mousemove", e => {
+    document.getElementById("mousePos").innerText =
+        `X: ${e.clientX}, Y: ${e.clientY}`;
+});
+
+/* ========== Key Detector ========== */
+document.addEventListener("keydown", e => {
+    document.getElementById("keyOutput").innerText = e.key;
+});
+
+/* ========== Notification Bell ========== */
+function ringBell() {
+    const bell = document.getElementById("bell");
+    bell.style.animation = "ring 0.6s";
+    setTimeout(() => bell.style.animation = "none", 600);
+}
+
+/* ========== Accordion ========== */
+function toggleAcc(element) {
+    let content = element.nextElementSibling;
+    content.style.maxHeight = 
+        content.style.maxHeight ? null : content.scrollHeight + "px";
+}
+
+/* ========== Tabs ========== */
+function openTab(tabId) {
+    document.querySelectorAll(".tab-content").forEach(t => t.style.display = "none");
+    document.getElementById(tabId).style.display = "block";
+}
+
+/* ========== Slider ========== */
+let slideIndex = 0;
+function showSlides() {
+    const slides = document.querySelectorAll(".slide");
+    slides.forEach(s => s.style.display = "none");
+    slideIndex = (slideIndex + 1) % slides.length;
+    slides[slideIndex].style.display = "block";
+}
+setInterval(showSlides, 2000);
+
+/* ========== Progress Bar ========== */
+function startProgress() {
+    const pb = document.getElementById("pb");
+    pb.style.width = "0%";
+    setTimeout(() => pb.style.width = "100%", 100);
+}
+
+/* ========== Stopwatch ========== */
+let swTime = 0, swInterval;
+function startSW() {
+    if (!swInterval) {
+        swInterval = setInterval(() => {
+            swTime += 0.01;
+            document.getElementById("sw").innerText = swTime.toFixed(2);
+        }, 10);
+    }
+}
+function stopSW() {
+    clearInterval(swInterval);
+    swInterval = null;
+}
+function resetSW() {
+    stopSW();
+    swTime = 0;
+    document.getElementById("sw").innerText = "0.00";
+}
+
+/* ========== Fetch API (Dummy Data) ========== */
+function loadAPI() {
+    fetch("https://randomuser.me/api/")
+        .then(res => res.json())
+        .then(data => {
+            const user = data.results[0];
+            document.getElementById("apiData").innerText =
+                `${user.name.first} ${user.name.last}, ${user.location.country}`;
+        });
+}
+</script>
+
+</body>
+</html>
